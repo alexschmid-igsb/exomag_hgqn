@@ -1,0 +1,18 @@
+@import '../../base';
+@import '../../hgqn';
+
+
+div.main-menu > .main-menu-button {
+    /*
+    margin-right: 20px;
+    margin-left: 0px;
+    */
+}
+
+div.main-menu > .main-menu-button:last-child {
+    /* margin-right: 0px; */
+}
+
+div.main-menu-submenu > div.main-menu-submenu-paper {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}

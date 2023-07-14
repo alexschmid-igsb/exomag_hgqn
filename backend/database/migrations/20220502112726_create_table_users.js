@@ -14,8 +14,7 @@ exports.up = function (knex) {
         table.string('role')
         table.boolean('isAdmin').notNullable()
 
-        // Beim aufspielen des Updates müssen die Datenbanken der produktivversionen angepasst werden bzgl folgender
-         änderungen:
+        // Beim aufspielen des Updates müssen die Datenbanken der produktivversionen angepasst werden bzgl folgender änderungen:
         table.jsonb('actions').notNullable()
         // table.boolean('isRegistered').notNullable()
         // table.string('registryToken')

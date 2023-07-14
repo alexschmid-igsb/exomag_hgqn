@@ -1,0 +1,75 @@
+
+1. CLEAR ALL
+
+sudo -i -u postgres
+psql -c "DROP DATABASE hgqn_dev"
+psql -c "DROP USER hgqn_dev"
+psql -c "DROP DATABASE hgqn_production"
+psql -c "DROP USER hgqn_production"
+
+
+
+2. CREATE DATABASE AND USER
+
+sudo -i -u postgres
+psql -c "CREATE USER hgqn_dev WITH PASSWORD '<DEV PASSWORD>'"
+psql -c "CREATE DATABASE hgqn_dev OWNER hgqn_dev"
+psql -c "GRANT ALL PRIVILEGES ON DATABASE hgqn_dev TO hgqn_dev"
+
+psql -c "CREATE USER hgqn_production WITH PASSWORD '<PRODUCTION PASSWORD>'"
+psql -c "CREATE DATABASE hgqn_production OWNER hgqn_production"
+psql -c "GRANT ALL PRIVILEGES ON DATABASE hgqn_production TO hgqn_production"
+
+
+
+3. ACCESS TEST
+
+host based access über localhost
+psql --user hgqn_dev --host localhost --db hgqn_dev
+
+host based access auf backend (oder anderem virtual server)
+psql --user hgqn_dev --host database --db hgqn_dev
+
+
+
+4. STUFF
+
+einfaches daten anzeigen
+psql
+\connect hgqn_dev;
+selec * from cells;
+exit
+
+
+deluser per command line
+psql --host database --user hgqn_dev --db hgqn_dev
+DELETE FROM users WHERE id='44857e08-97e1-48a6-98e0-e554ddb2b981';
+
+
+
+5. DATABASE DUMP
+
+pg_dump --host=database --username=hgqn_dev --format=c --file=exomag_backup_YYYYMMDD.dump hgqn_dev
+
+
+
+
+
+
+
+
+
+
+================================================================================================================================
+
+\connect hgqn_dev
+ALTER TABLE users ADD COLUMN actions jsonb;
+UPDATE users SET actions = '{"activation": {"token": null, "when": null}, "resetPassword": {"token": null, "when": null}}'
+select username, email, "isRegistered" from users where "isRegistered"=false;
+ALTER TABLE users DROP COLUMN "isRegistered", DROP COLUMN "registryToken", DROP COLUMN "registrySendWhen";
+
+
+
+
+
+
