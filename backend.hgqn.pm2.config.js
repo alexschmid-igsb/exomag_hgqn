@@ -11,12 +11,14 @@ module.exports = {
 		env_development: {
 			PORT: 9000,
 			NODE_ENV: "development",
-			REACT_APP_INSTANCE_ID: "HGQN"
+			REACT_APP_INSTANCE_ID: "HGQN",
+            INSTANCE_CONFIG_PATH: "config/hgqn"
 		},
 		env_production: {
 			PORT: 9000,
 			NODE_ENV: "production",
-			REACT_APP_INSTANCE_ID: "HGQN"
+			REACT_APP_INSTANCE_ID: "HGQN",
+            INSTANCE_CONFIG_PATH: "config/hgqn"
 		}
 	}]
 }
