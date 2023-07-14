@@ -1,0 +1,66 @@
+
+0. CONFIGURE POSTGRES ACCESS
+
+sudo nano /etc/postgresql/12/main/postgresql.conf
+listen_addresses = '*'
+
+Nur nötig, wenn die Datenbank auf einer anderen (virtuellen) maschiene läuft
+sudo nano /etc/postgresql/12/main/pg_hba.conf
+host    exomag_base_dev exomag_base_dev        10.10.10.0/24   md5
+host    exomag_base_production  exomag_base_production 10.10.10.0/24   md5
+
+
+
+1. CLEAR ALL
+
+sudo -i -u postgres
+psql -c "DROP DATABASE exomag_base_dev"
+psql -c "DROP USER exomag_base_dev"
+psql -c "DROP DATABASE exomag_base_production"
+psql -c "DROP USER exomag_base_production"
+
+
+
+2. CREATE DATABASE AND USER
+
+sudo -i -u postgres
+psql -c "CREATE USER exomag_base_dev WITH PASSWORD '<DEV PASSWORD>"
+psql -c "CREATE DATABASE exomag_base_dev OWNER exomag_base_dev"
+psql -c "GRANT ALL PRIVILEGES ON DATABASE exomag_base_dev TO exomag_base_dev"
+psql -c "CREATE USER exomag_base_production WITH PASSWORD '<PRODUCTION PASSWORD>"
+psql -c "CREATE DATABASE exomag_base_production OWNER exomag_base_production"
+psql -c "GRANT ALL PRIVILEGES ON DATABASE exomag_base_production TO exomag_base_production"
+
+
+
+3. ACCESS TEST
+
+host based access über localhost
+psql --user exomag_base_dev --host localhost --db exomag_base_dev
+
+host based access auf backend (oder anderem virtual server)
+psql --user exomag_base_dev --host database --db exomag_base_dev
+
+
+
+4. MISC
+
+einfaches daten anzeigen
+psql
+\connect exomag_base_dev;
+selec * from cells;
+exit
+
+
+deluser per command line
+psql --host database --user exomag_base_dev --db exomag_base_dev
+DELETE FROM users WHERE id='44857e08-97e1-48a6-98e0-e554ddb2b981';
+
+
+
+5. DATABASE DUMP
+
+pg_dump --host=database --username=exomag_base_dev --format=c --file=exomag_backup_YYYYMMDD.dump exomag_base_dev
+
+
+

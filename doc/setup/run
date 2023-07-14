@@ -1,0 +1,76 @@
+
+
+InstanceID
+
+Die Instance ID wird momentan nicht aktiv verwendet, da die Instancen ihren eigenen Branches haben
+und eigene Files (z.b. Layout und Frontend Komponenten) definieren können.
+
+Wenn die Instance ID aktiv gesetzt verwenden werden soll, dann muss das per Umgebeungsvariable
+definiert werden (siehe unten).
+
+Im Frontend werden alle Umgebungsvariablen die mit REACT_APP_ beginnen nach process.env übernommen
+und stehen so zur Verfügung.
+
+Im Backend wird über das Config Module die Umgebunsvariable REACT_APP_INSTANCE_ID auf die Config
+Variable instanceId gemappt.
+
+
+
+
+
+
+DEVELOPMENT
+
+run ohne instance id:
+npm run dev
+
+run mit instance id:
+REACT_APP_INSTANCE_ID=HGQN npm run dev
+
+Backend und Frontend (über create-react-app dev server) werden hier gleichzeitig gestartet. Im 
+Frontend werden Änderungen im code über hotplug direkt berücksichtigt.
+
+
+
+PRODUCTION
+
+Für den Production Mode muss zunächst der Frontend Build ausgeführt werden. Hierbei wird eine
+optimierte Version kompiliert die dann über einen Webserver ausgeliefert wird. Die instace id
+muss für den build übergeben werden.
+
+REACT_APP_INSTANCE_ID=HGQN npm run build
+
+Das Backend wird über pm2 gestaret. Die Instance ID kann über die pm2 config übergeben werden.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

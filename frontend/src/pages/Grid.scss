@@ -1,0 +1,138 @@
+
+@import '../base';
+
+
+
+/* hack.. muss woanders richtig definiert werden */
+.MuiDialogContent-root {
+    padding: 0px !important;
+}
+
+
+
+div.abc {
+    background-color: $BGCOLOR_A;
+    position: absolute;
+    top: 0px;
+    left: 200px;
+    height:32px;
+    width: 500px;
+}
+
+
+main.page-content > div.grid-container {
+    height: 100%;
+
+    /*
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border: 1px solid #AAA;
+    */
+}
+
+
+
+
+
+/* generischer style für ag-grids */
+
+div.ag-theme-alpine-modified {
+}
+
+div.ag-theme-alpine-modified div.ag-root-wrapper {
+    /* border-radius: 5px; */
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+div.ag-theme-alpine-modified div.ag-header {
+    /*
+    background-color: #EEE;
+    */
+}
+
+div.ag-theme-alpine-modified div.ag-body-viewport {
+    /*
+    background-color: #f1f2eb;
+    background-color: #EBF0F2;
+    background-color: #EBF0F2;
+    background-color: #EBF2F2;
+    background-color: #FAFAFA;
+    background-color: #eef0f2;
+    */
+}
+
+div.ag-theme-alpine-modified div.ag-row {
+    border-bottom: 1px solid white;
+}
+
+div.ag-theme-alpine-modified div.ag-row-even {
+    background-color: unset;
+}
+
+div.ag-theme-alpine-modified div.ag-row-odd {
+    background-color: rgba(0,0,0,0.1);
+    background-color: unset;
+}
+
+div.ag-theme-alpine-modified div.ag-row-hover {
+    background-color: #e1eff6;
+}
+
+div.ag-theme-alpine-modified div.ag-row-selected {
+    /* alternativen */
+    background-color: #FAE3C8;
+    background-color: #DEE2FF;
+    background-color: #efd3d7;
+    background-color: #cbc0d3;
+    background-color: #ffd97d;
+    background-color: #ff9b85;
+    background-color: #f8dda4;
+    background-color: #ddf9c1;
+    background-color: #aed9e0;
+}
+
+
+
+div.ag-theme-alpine-modified {
+}
+
+
+div.ag-theme-alpine-modified > div.ag-root-wrapper {
+    /* border: none; */
+}
+
+div.ag-theme-alpine-modified div.ag-header {
+}
+
+div.ag-theme-alpine-modified div.ag-row {
+}
+
+
+
+
+
+
+/* EXPANDED ROWS */
+
+div.ag-theme-alpine-modified div.has-expanded-rows div.ag-row.expanded {
+    /* border: 2px solid red; */
+    background-color: #aed9e0;
+    border: 1px solid #8896a2;
+}
+
+div.ag-theme-alpine-modified div.has-expanded-rows div.ag-row.expanded + div.ag-row.expanded {
+    border-top: none;
+}
+
+div.ag-theme-alpine-modified div.has-expanded-rows div.ag-row:not(.expanded) {
+    /* border: 1px solid green; */
+    opacity: 0.5;
+    box-sizing: border-box;
+}
+
+
+
+
+
+
+
+

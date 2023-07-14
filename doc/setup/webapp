@@ -1,0 +1,50 @@
+
+
+
+1. NODE
+
+https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04-de
+
+
+
+2. GET CODE
+
+sudo adduser --disabled-password --disabled-login exomag
+sudo -i -u exomag
+cd /home/exomag
+git -c http.sslVerify=false clone https://git.meb.uni-bonn.de/aschmid/exom-ag-database.git
+
+
+
+3. INSTALL
+
+cd exomag
+npm install
+
+cd frontend
+npm install --legacy-peer-deps
+
+
+
+3. CREATE DATABASE STRUCTURE
+
+cd backend
+knex migrate:latest
+
+
+
+4. SEED TEST DATA
+
+cd backend
+./run_base_seed.sh
+
+
+
+
+
+
+
+
+
+
+
