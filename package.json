@@ -41,8 +41,8 @@
     "scripts": {
         "dev": "concurrently --kill-others-on-fail \"yarn backend-dev\" \"yarn frontend\"",
         "build": "cd frontend && react-scripts build",
-        "backend": "node backend/run",
-        "backend-dev": "nodemon backend/run",
+        "backend": "INSTANCE_CONFIG_PATH=config/hgqn node backend/run",
+        "backend-dev": "INSTANCE_CONFIG_PATH=config/hgqn nodemon backend/run",
         "frontend": "cd frontend && react-scripts start",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
