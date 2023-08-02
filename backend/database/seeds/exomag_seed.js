@@ -37,48 +37,28 @@ exports.seed = async function (knex) {
     // insert users
     const admin = {
         id: uuidv4(),
-        username: 'MMustermann',
+        username: 'Admin',
         email: 'admin@domain.de',
-        password: await argon2.hash("123456"),
+        password: await argon2.hash('123'),
         firstname: 'Max',
         lastname: 'Mustermann',
         site: 'Bonn',
         role: 'Software Engineer',
         isAdmin: true,
-        
-        actions: {
-            activation: {
-                token: null,
-                when: null
-            },
-            resetPassword:  {
-                token: null,
-                when: null
-            }
-        }
+        isRegistered: true
     }
 
     const user = {
         id: uuidv4(),
-        username: 'HHasenkamp',
+        username: 'User',
         email: 'heribert@hasenkamp.de',
-        password: await argon2.hash("abc"),
+        password: await argon2.hash('abc'),
         firstname: 'Heribert',
         lastname: 'Hasenkamp',
         site: 'München',
         role: 'Humangenetik',
         isAdmin: false,
-
-        actions: {
-            activation: {
-                token: null,
-                when: null
-            },
-            resetPassword:  {
-                token: null,
-                when: null
-            }
-        }
+        isRegistered: true
     }
 
     await knex('users').insert([
@@ -113,6 +93,16 @@ exports.seed = async function (knex) {
 
 
     // insert columns
+
+
+
+
+
+
+
+    /*
+
+    // ALT
 
     let columnKeys = [
         'internal case ID',
@@ -431,15 +421,162 @@ exports.seed = async function (knex) {
 
     await knex('columns').insert(seedColumns)
 
+    */
 
 
 
 
 
+    // aus der aktuellen datenbank:
+
+
+
+
+
+    /*
+    
+                      id                  |                 grid                 |                  label                   |  type   | context | is_key | ordering |   filter_type   | format_string 
+    --------------------------------------+--------------------------------------+------------------------------------------+---------+---------+--------+----------+-----------------+---------------
+     ce9741c7-99b7-40a4-8d20-c4b0b8752d67 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | internal case ID                         | string  |         | t      |       10 |                 | 
+     6d30294d-39eb-4e79-9922-4974836cb8d4 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | external case ID                         | string  |         | f      |       20 |                 | 
+     f869f3b8-0753-46e7-8e13-4ae7028fdae7 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | sequencing lab                           | string  |         | t      |       30 | CustomSetFilter | 
+     88f9b832-3ed7-4a41-a6ba-2c147162ff7c | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | GestaltMatcher ID                        | string  |         | f      |       40 |                 | 
+     ea0027d2-2243-4bde-ab2b-7646706c7ce1 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | Face2Gene ID                             | string  |         | f      |       50 |                 | 
+     06202eba-7bdd-4c40-a808-fdae7f5b2c3b | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | age in years                             | integer |         | f      |       60 |                 | 
+     3061cd97-5222-4a0a-98cd-ccf428533cb6 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | sex                                      | string  |         | f      |       70 | CustomSetFilter | 
+     81f36aa6-5dc6-40ae-8d7b-cf25d514dc8a | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | referring clinician                      | string  |         | f      |       80 |                 | 
+     a03ed607-ab47-409f-8faf-945897ee6be8 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | Start der Diagnostik                     | date    |         | f      |       90 |                 | 
+     79360e97-cd56-4a42-bed5-3ee96a2b9a72 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | Befunddatum                              | date    |         | f      |      100 |                 | 
+     48373ac2-e2b7-4cec-9902-78e527eb8986 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | HPO terms                                | string  |         | f      |      110 |                 | 
+     f01f43f2-184b-49bc-a7de-ac8d3df01e7e | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | bisherige Diagnostik                     | string  |         | f      |      120 |                 | 
+     48e69998-5c4e-4d78-8671-7ac73967ab31 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | Selektivvertrag                          | string  |         | f      |      125 | CustomSetFilter | 
+     d03e2984-337b-49ed-8006-c41d4677f939 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | single/duo/trio                          | string  |         | f      |      130 | CustomSetFilter | 
+     b8cf5983-19c7-4a71-b77b-595a4388f92d | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | disease category                         | string  |         | f      |      140 | CustomSetFilter | 
+     78f4a1e4-6316-4f8a-aeac-a25977d62035 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | case solved/unsolved/unclear             | string  |         | f      |      150 | CustomSetFilter | 
+     b5337569-491b-4efe-ac95-f36c1742caa0 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | disease gene                             | string  |         | f      |      160 |                 | 
+     6f975add-3b39-41c9-8815-f3d7abb551a6 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | if new disease gene, level of evidence   | string  |         | f      |      170 |                 | 
+     8a7a8118-b6bb-4128-8ba0-8147b9ffa41c | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | pmid                                     | string  |         | f      |      180 |                 | 
+     ce7b7316-1ec8-4c68-8bb7-850b0294779b | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | HGVS_cDNA                                | string  |         | f      |      190 |                 | 
+     c67f889e-a671-47a8-93bc-e89bd6c08f1c | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | HGVS_gDNA                                | string  |         | f      |      200 |                 | 
+     57c9625f-1c56-4dfe-9a34-0537c5452f93 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | zygosity                                 | string  |         | f      |      210 |                 | 
+     acdc3bca-d493-47df-998d-7b22bfe213fc | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | de novo                                  | string  |         | f      |      220 | CustomSetFilter | 
+     c51cdaf2-b409-41f3-a648-7e6f221a354d | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | ACMG class                               | string  |         | f      |      230 | CustomSetFilter | 
+     29d37ddc-3996-4a10-8c29-bd620b0c3f2a | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | ClinVar Accession ID                     | string  |         | f      |      240 |                 | 
+     7efa68b8-b685-4c91-90b8-0ef46e0e1cb8 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | mode of inheritance                      | string  |         | f      |      250 | CustomSetFilter | 
+     607dbffd-f410-4ceb-8259-7bb488417466 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | autozygosity                             | decimal |         | f      |      260 |                 | 
+     77d82833-825b-4ae4-8519-6968cbc38e6c | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | secondary/incidental findings            | string  |         | f      |      270 |                 | 
+     356dfa50-5a1a-4ba4-95ca-d80ffbf449b0 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | changes in management/therapy after test | string  |         | f      |      280 |                 | 
+     0f336973-9fa6-47be-9dbd-04fe00aba4c4 | 93d023fa-3d76-476c-a7aa-f03d6dc4fe73 | relevant findings for research           | string  |         | f      |      290 |                 | 
+    (30 rows)
+    
+    
+    CREATE TEMP VIEW bla AS SELECT regexp_replace(
+                format( E'{ '
+                     '   id: uuidv4(), '
+                     '   grid: gridId, '
+                     '   label: %s, '
+                     '   type: %s, '
+                     '   context: %s, '
+                     '   is_key: %s, '
+                     '   ordering: %s, '
+                     '   filter_type: %s, '
+                     '   format_string: %s '
+                    '}, ',
+                    CASE WHEN label IS NOT NULL THEN CONCAT('"',label,'"') ELSE 'null' END,
+                    CASE WHEN type IS NOT NULL THEN CONCAT('"',type,'"') ELSE 'null' END,
+                    CASE WHEN context IS NOT NULL THEN CONCAT('"',context,'"') ELSE 'null' END,
+                    CASE WHEN is_key THEN 'true' ELSE 'false' END,
+                    CASE WHEN ordering IS NOT NULL THEN ordering ELSE null END,
+                    CASE WHEN filter_type IS NOT NULL THEN CONCAT('"',filter_type,'"') ELSE 'null' END,
+                    CASE WHEN format_string IS NOT NULL THEN CONCAT('"',format_string,'"') ELSE 'null' END
+                ),
+                '"null"',
+                'null'
+            )
+    FROM
+        columns
+    ORDER BY
+        ordering;
+    
+    \copy (SELECT * FROM bla) TO 'out.alex';
+    
+    */
+
+
+    let columns = [
+
+        { id: uuidv4(), grid: gridId, label: "internal case ID", type: "string", context: null, is_key: true, ordering: 10, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "sequencing lab", type: "string", context: null, is_key: true, ordering: 20, filter_type: "CustomSetFilter", format_string: null },
+        { id: uuidv4(), grid: gridId, label: "external case ID", type: "string", context: null, is_key: false, ordering: 30, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "GestaltMatcher ID", type: "string", context: null, is_key: false, ordering: 40, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "Face2Gene ID", type: "string", context: null, is_key: false, ordering: 50, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "prenatal", type: "integer", context: null, is_key: false, ordering: 60, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "DoB", type: "date", context: null, is_key: false, ordering: 70, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "age in months", type: "integer", context: null, is_key: false, ordering: 80, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "age in years", type: "integer", context: null, is_key: false, ordering: 90, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "sex", type: "string", context: null, is_key: false, ordering: 100, filter_type: "CustomSetFilter", format_string: null },
+        { id: uuidv4(), grid: gridId, label: "referring clinician", type: "string", context: null, is_key: false, ordering: 110, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "Start der Diagnostik", type: "date", context: null, is_key: false, ordering: 120, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "Befunddatum", type: "date", context: null, is_key: false, ordering: 130, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "HPO terms", type: "string", context: null, is_key: false, ordering: 140, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "bisherige Diagnostik", type: "string", context: null, is_key: false, ordering: 150, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "Selektivvertrag", type: "string", context: null, is_key: false, ordering: 160, filter_type: "CustomSetFilter", format_string: null },
+        { id: uuidv4(), grid: gridId, label: "single/duo/trio", type: "string", context: null, is_key: false, ordering: 170, filter_type: "CustomSetFilter", format_string: null },
+        { id: uuidv4(), grid: gridId, label: "disease category", type: "string", context: null, is_key: false, ordering: 180, filter_type: "CustomSetFilter", format_string: null },
+        { id: uuidv4(), grid: gridId, label: "case solved/unsolved/unclear", type: "string", context: null, is_key: false, ordering: 190, filter_type: "CustomSetFilter", format_string: null },
+        { id: uuidv4(), grid: gridId, label: "changes in management/therapy after test", type: "string", context: null, is_key: false, ordering: 200, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "relevant findings for research", type: "string", context: null, is_key: false, ordering: 210, filter_type: null, format_string: null },
+        // { id: uuidv4(), grid: gridId, label: "secondary/incidental findings", type: "string", context: null, is_key: false, ordering: 270, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "Test conducted", type: "string", context: null, is_key: false, ordering: 220, filter_type: "CustomSetFilter", format_string: null },
+        { id: uuidv4(), grid: gridId, label: "wet lab meta info", type: "string", context: null, is_key: false, ordering: 230, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "AutoCasc", type: "string", context: null, is_key: false, ordering: 240, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "autozygosity", type: "decimal", context: null, is_key: false, ordering: 250, filter_type: null, format_string: null },
+
+        { id: uuidv4(), grid: gridId, label: "gene", type: "string", context: null, is_key: false, ordering: 260, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "variant_solves_case", type: "string", context: null, is_key: false, ordering: 270, filter_type: "CustomSetFilter", format_string: null },
+        { id: uuidv4(), grid: gridId, label: "if new disease gene, level of evidence", type: "string", context: null, is_key: false, ordering: 280, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "pmid", type: "string", context: null, is_key: false, ordering: 290, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "ISCN", type: "string", context: null, is_key: false, ordering: 300, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "HGVS_cDNA", type: "string", context: null, is_key: false, ordering: 310, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "HGVS_gDNA", type: "string", context: null, is_key: false, ordering: 320, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "HGVS_protein", type: "string", context: null, is_key: false, ordering: 330, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "ACMG class", type: "string", context: null, is_key: false, ordering: 340, filter_type: "CustomSetFilter", format_string: null },
+        { id: uuidv4(), grid: gridId, label: "zygosity", type: "string", context: null, is_key: false, ordering: 350, filter_type: null, format_string: null },
+        { id: uuidv4(), grid: gridId, label: "de novo", type: "string", context: null, is_key: false, ordering: 360, filter_type: "CustomSetFilter", format_string: null },
+        { id: uuidv4(), grid: gridId, label: "mode of inheritance", type: "string", context: null, is_key: false, ordering: 370, filter_type: "CustomSetFilter", format_string: null },
+        { id: uuidv4(), grid: gridId, label: "ClinVar Accession ID", type: "string", context: null, is_key: false, ordering: 380, filter_type: null, format_string: null },
+    ]
+
+    await knex('columns').insert(columns)
+
+
+
+    // TODO
+    // Die columns zentral irgendwo definieren. Dann können folgendes automatisch generiert werden:
+    //   * Excel Template
+    //   * Seed
+    //   * Updatescript welches die columns anpasst ohne den seed neu laufen zu lassen
+    //   * ....
+
+    
+
+
+
+
+
+
+
+
+
+    return
+
+
+    
+
+    // todo: beispielsdaten neu machen
 
 
     // TEST DATA
-
 
     // change event
     var changeId = uuidv4()
@@ -718,12 +855,12 @@ exports.seed = async function (knex) {
 
     let cells = []
 
-    for(let columnKey of columnKeys) {
+    for (let columnKey of columnKeys) {
 
         let columnId = columns[columnKey].id
         let columnData = data[columnKey]
 
-        if(columnData === undefined || columnData == null) {
+        if (columnData === undefined || columnData == null) {
             // spalten zu denen es keine daten gibt werden übersprungen
             continue
         }
@@ -734,7 +871,7 @@ exports.seed = async function (knex) {
 
             let value = columnData[i]
 
-            if(value !== undefined && value !== null && value.length > 0) {
+            if (value !== undefined && value !== null && value.length > 0) {
 
                 let cell = {
                     id: uuidv4(),

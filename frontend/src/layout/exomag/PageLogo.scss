@@ -1,0 +1,53 @@
+@import '../../base';
+@import '../../fonts';
+@import '../../exomag';
+
+div.page-logo {
+    width: 200px;
+    margin: 0px;
+    /* margin-right: 10px; */
+    background-color: rgba(255,255,255,0.2);
+    align-self: stretch;
+
+    // border-left: 1px solid $HEADER_INNER_BORDER_COLOR;
+
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 4px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+
+    margin: 6px 6px 0px 6px;
+
+    & > div.primary {
+        // font-family: 'Fredoka One';
+        font-family: 'Signika Variable', sans-serif;
+        font-weight: 700;
+        font-size: 34px;
+        // color: rgba(0,0,0,0.8);
+        color: #1976d2;
+    }
+
+    & > div.secondary {
+        font-family: 'Indie Flower', sans-serif;
+        // font-family: 'Poiret One', sans-serif;
+        // font-family: 'Swanky and Moo Moo', sans-serif;
+        // font-family: 'Happy Monkey', sans-serif;
+        // font-family: 'OpenDyslexic', sans-serif;
+        // font-family: 'Special Elite', sans-serif;
+
+        font-weight: 300;
+        font-size: 24px;
+        // color: rgba(0,0,0,1.0);
+        color: rgba(255,255,255,0.9);
+        // border: 1px solid green;
+
+        margin-top: -8px;
+        margin-bottom: -7px;
+    }
+
+}
