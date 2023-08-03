@@ -9,9 +9,9 @@ if ! [ -f "$PID_FILE" ]; then
     echo "THE REDIS PID FILE DOES NOT EXIST"
     echo "IT SEEMS THAT THE SERVER IS NOT RUNNING"
     exit 1
-    exit 1
 fi
 
 kill -15 `cat $PID_FILE`
+echo $PID_FILE
 echo "Redis server stopped"
 
