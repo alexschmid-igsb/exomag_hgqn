@@ -12,6 +12,6 @@ if ! [ -f "$PID_FILE" ]; then
 fi
 
 kill -15 `cat $PID_FILE`
-echo $PID_FILE
+rm $PID_FILE
 echo "Redis server stopped"
 
