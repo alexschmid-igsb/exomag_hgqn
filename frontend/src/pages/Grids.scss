@@ -5,6 +5,18 @@
 
 
 
+div.search-container {
+    margin-bottom: 10px;
+
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
 div.grid-filter-toolbar {
     border-top: 1px solid rgba(0,0,0,0.1);
     background-color: #f8f8f8;

@@ -12,6 +12,14 @@ import { v4 as uuidv4 } from 'uuid'
 
 import PopoverButton from '../components/PopoverButton'
 
+import Paper from '@mui/material/Paper';
+import InputBase from '@mui/material/InputBase';
+import Divider from '@mui/material/Divider';
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+import DirectionsIcon from '@mui/icons-material/Directions';
+
+import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
@@ -812,6 +820,12 @@ export default function Grid() {
         const renderFilterToolbar = () =>
             <div className="grid-filter-toolbar ag-theme-alpine">
 
+                {/* <div className="global-search">
+                    <TextField label="Suche" variant="filled" />
+                </div> */}
+
+                {/* <div className="filter"> */}
+
                 {/* COUNTS */}
                 <div className="category active">
                     <IconifyIcon className="category-icon" icon="ic:round-numbers" />
@@ -957,6 +971,10 @@ export default function Grid() {
 
 
 
+                {/* </div> */}
+
+                
+
             </div>
 
 
@@ -966,9 +984,36 @@ export default function Grid() {
 
 
 
+    const onSearchChanged = event => {
+
+        gridRef.current.api.setQuickFilter(event.target.value)
+
+    }
+
+
+
 
     return (
         <>
+
+
+            <div className="search-container">
+                <Paper component="form" sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 600 }}
+                >
+                    <InputBase
+                        sx={{ ml: 1, flex: 1 }}
+                        placeholder="Suche"
+                        onChange={event => onSearchChanged(event)}
+                    />
+                    <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                    <SearchIcon />
+                    </IconButton>
+                </Paper>
+            </div>
+
+
+            {/* <TextField id="filled-basic" label="Filled" variant="filled" /> */}
+
             {renderFilterToolbar()}
             {renderGrid()}
             {renderUploadDialog()}
