@@ -62,7 +62,8 @@ export default function Page1() {
             <h2>Home</h2>
 
             {/* <Link href="./ExomAG_Excel_Template_AS3.xlsx">Download Excel Template</Link> */}
-            <Link href="https://uni-bonn.sciebo.de/s/n3DwCeNXPGanUYc/download">Download Excel Template</Link>
+            <Link style={{fontWeight: 'bold'}} href="https://uni-bonn.sciebo.de/s/n3DwCeNXPGanUYc/download">Download Excel Template</Link>
+            <Link style={{fontWeight: 'bold', marginTop: '20px'}} href="https://docs.google.com/document/d/1X6uLEUBcxA01pO1kvibA6LGukxV8fsrTV2wSnrKw0fw/export?format=pdf">FAQ - Datendienste für genetische Varianten</Link>
 
         </div>
     )
