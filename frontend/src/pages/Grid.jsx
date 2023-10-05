@@ -381,6 +381,8 @@ export default function Grid() {
 
     function buildColumnDefs(columnsFromAPI) {
         console.log("BUILD COLUMN DEFINITIONS")
+        console.log(columnsFromAPI)
+        
         let columnState = []                                    // column state to 
         let colDefs = []                                        // column defs for the grid
         for (let columnFromAPI of columnsFromAPI) {
@@ -409,6 +411,7 @@ export default function Grid() {
                     colDef.comparator = CellValueComparatorDecimal
                     break
                 case 'date':
+                    console.log(colDef)
                     colDef.valueFormatter = DateFormatter
                     colDef.comparator = CellValueComparatorDate
                     break
@@ -427,6 +430,9 @@ export default function Grid() {
 
             colDefs.push(colDef)
         }
+
+        console.log(colDefs)
+
         setColumnDefs(colDefs)
     }
 

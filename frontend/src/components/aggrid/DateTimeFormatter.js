@@ -8,6 +8,9 @@ export default ({type,blaStuff}) => {
 
                 // korrekter weg um vom ISO String zum lokal date zu kommen
 
+                // console.log(params)
+                // console.log(params.colDef.headerName)
+
                 if(typeof params === 'undefined' || params == null || typeof params.value === 'undefined' || params.value == null) {
                     return undefined
                 }
