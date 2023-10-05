@@ -60,7 +60,13 @@ import { setBreadcrumbs } from '../store/breadcrumbs'
 // import { setGridSortings, setGridFilterGlobalIncrement } from '../store/grid'
 import * as GridStore from '../store/grid'
 
-import { CellValueComparatorString, CellValueComparatorInteger, CellValueComparatorDecimal } from '../components/aggrid/CustomComparators'
+import {
+    CellValueComparatorString,
+    CellValueComparatorInteger,
+    CellValueComparatorDecimal,
+    CellValueComparatorDate
+} from '../components/aggrid/CustomComparators'
+
 import CustomSetFilter from '../components/aggrid/CustomSetFilter.jsx'
 import createDateTimeFormater from '../components/aggrid/DateTimeFormatter.js'
 
@@ -375,6 +381,8 @@ export default function Grid() {
 
     function buildColumnDefs(columnsFromAPI) {
         console.log("BUILD COLUMN DEFINITIONS")
+        console.log(columnsFromAPI)
+        
         let columnState = []                                    // column state to 
         let colDefs = []                                        // column defs for the grid
         for (let columnFromAPI of columnsFromAPI) {
@@ -403,7 +411,9 @@ export default function Grid() {
                     colDef.comparator = CellValueComparatorDecimal
                     break
                 case 'date':
+                    console.log(colDef)
                     colDef.valueFormatter = DateFormatter
+                    colDef.comparator = CellValueComparatorDate
                     break
                 case '1-n':
                     colDef.autoHeight = true
@@ -420,6 +430,9 @@ export default function Grid() {
 
             colDefs.push(colDef)
         }
+
+        console.log(colDefs)
+
         setColumnDefs(colDefs)
     }
 

@@ -84,6 +84,22 @@ export const CellValueComparatorDecimal = (valueA, valueB, nodeA, nodeB, isDesce
 
 
 
+export const CellValueComparatorDate = (valueA, valueB, nodeA, nodeB, isDescending) => {
+
+    // hier kommen ISO date/time strings an, diese kann man einfach als string vergleichen
+    
+    if(valueA == undefined) {
+        return -1
+    }
+    if(valueB == undefined) {
+        return 1
+    }
+
+    return valueA > valueB ? 1 : valueA < valueB ? -1 : 0
+}
+
+
+
 
 
 
