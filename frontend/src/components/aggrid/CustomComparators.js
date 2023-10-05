@@ -84,6 +84,35 @@ export const CellValueComparatorDecimal = (valueA, valueB, nodeA, nodeB, isDesce
 
 
 
+export const CellValueComparatorDate = (valueA, valueB, nodeA, nodeB, isDescending) => {
+
+    console.log(typeof valueA)
+    console.log(valueA)
+
+    console.log(typeof valueB)
+    console.log(valueA)
+
+    return 1
+
+    if(valueA == undefined) {
+        return 1
+    }
+    if(valueB == undefined) {
+        return -1
+    }
+    const floatA = parseFloat(valueA)
+    if(isNaN(floatA)) {
+        return 1
+    }
+    const floatB = parseFloat(valueB)
+    if(isNaN(floatB)) {
+        return -1
+    }
+    return floatA > floatB ? 1 : floatA < floatB ? -1 : 0
+}
+
+
+
 
 
 
