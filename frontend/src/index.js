@@ -12,6 +12,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import Layout from './layout/hgqn/Layout'
 import Home from './pages/Home'
+import Disclaimer from './pages/Disclaimer'
 import Grid from './pages/Grid'
 import Grids from './pages/Grids'
 import UserList from './pages/UserList'
@@ -34,6 +35,7 @@ root.render(
                         <Route path="/" element={<LoginProvider><Layout/></LoginProvider>}>
                             <Route path="/" element={<Home />} />
                             <Route path="home" element={<Home />} />
+                            <Route path="disclaimer" element={<Disclaimer />} />
                             <Route path="grids/:gridId" element={<Grid />} />
                             <Route path="grids" element={<Grids />} />
                             <Route path="users" element={<UserList />} />

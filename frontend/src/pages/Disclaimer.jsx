@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams, useNavigate } from "react-router-dom"
 
 import Button from '@mui/material/Button'
 import LoginIcon from '@mui/icons-material/Login'
@@ -15,8 +14,6 @@ import { setBreadcrumbs } from '../store/breadcrumbs'
 import API from '../api/fetchAPI'
 
 export default function Page1() {
-
-    const navigate = useNavigate()
 
     const user = useSelector((state) => state.user)
 
@@ -62,12 +59,13 @@ export default function Page1() {
     return (
         <div style={{padding: '20px', height: '100%', display: 'flex', flexFlow: 'column'}}>
 
-            <h2>Home</h2>
+            <h2>Disclaimer and data use policy</h2>
 
-            {/* <Link href="./ExomAG_Excel_Template_AS3.xlsx">Download Excel Template</Link> */}
-            <Link style={{fontWeight: 'bold'}} href="https://uni-bonn.sciebo.de/s/n3DwCeNXPGanUYc/download">Download Excel Template</Link>
-            <Link style={{fontWeight: 'bold', marginTop: '20px'}} href="https://docs.google.com/document/d/1X6uLEUBcxA01pO1kvibA6LGukxV8fsrTV2wSnrKw0fw/export?format=pdf">FAQ - Datendienste für genetische Varianten</Link>
-            <Link style={{fontWeight: 'bold', marginTop: '40px'}} href="#" onClick={() => navigate('/disclaimer')}>Disclaimer and data use policy&nbsp;&nbsp;|&nbsp;&nbsp;Haftungsausschluss und Richtlinien zur Datennutzung </Link>
+            <p>The information on this website is not intended for direct diagnostic use or medical decision-making without review by a genetics professional. Individuals should not change their health behavior solely on the basis of information contained on this website. If you have questions about the information contained on this website, please see a healthcare professional. </p>
+
+            <h2>Haftungsausschluss und Richtlinien zur Datennutzung</h2>
+
+            <p>Die Informationen auf dieser Website sind nicht für den direkten diagnostischen Gebrauch oder die medizinische Entscheidungsfindung ohne Überprüfung durch eine genetische Fachkraft bestimmt. Einzelpersonen sollten ihr Gesundheitsverhalten nicht allein auf der Grundlage der Informationen auf dieser Website ändern. Wenn Sie Fragen zu den auf dieser Website enthaltenen Informationen haben, wenden Sie sich bitte an eine medizinische Fachkraft.</p>
 
         </div>
     )
